@@ -52,3 +52,5 @@ while cam.isOpened():
     # it will show captured video on screen
     cv2.imshow('Movement Detection Camera',frame1)
 
+    ## David's comment
+
