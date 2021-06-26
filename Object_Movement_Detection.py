@@ -1,5 +1,5 @@
 import cv2
-import winsound
+#import winsound
 # we are using only one camera so thats why we entered 0
 cam=cv2.VideoCapture(0)
 

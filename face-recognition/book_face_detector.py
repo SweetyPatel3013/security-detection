@@ -171,7 +171,7 @@ haar_cascade_detector = HaarCascadeFaceDetector()
 #haar_cascade_detector.run()
 
 tensorflow_detector = TensorFlowFaceDetector()
-# tensorflow_detector.run('images/samples/trump-and-biden.jpeg')
+#tensorflow_detector.run('images/samples/trump-and-biden.jpeg')
 
 dlib_detector = DlibFaceDetector()
 #dlib_detector.run_hog('images/samples/trump-and-others.jpeg')

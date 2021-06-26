@@ -97,7 +97,8 @@ def detect_faces_from(familiar_faces, source=0):
     while True:
         ret, current_frame = webcam_video_stream.read()
         current_frame_small = cv2.resize(current_frame, (0, 0), fx=0.25, fy=0.25)
-        face_locations = face_recognition.face_locations(current_frame_small, number_of_times_to_upsample=1, model='hog')
+        face_locations = face_recognition.face_locations(current_frame_small, number_of_times_to_upsample=3, model='cnn')
+        #face_locations = face_recognition.face_locations(current_frame_small, number_of_times_to_upsample=1, model='hog')
         all_face_encodings = face_recognition.face_encodings(current_frame_small, face_locations)
         if IS_FACE_RECOGNITION_ENABLED:
             recognize_faces(current_frame, face_locations, all_face_encodings, scale=4)
