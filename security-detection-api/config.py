@@ -1,7 +1,9 @@
+# API configuration
 web_app_port = 8888
+
+# Path where the API will save files
 data_dir = './data'
 feature_dir = './features'
-people = None
-features = None
-model = None
-face_detector = None
+
+# Models implemented: TF or DLIB
+face_recognition_type = 'DLIB'

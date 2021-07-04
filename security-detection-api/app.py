@@ -4,12 +4,18 @@ import cv2
 import numpy as np
 import json
 import base64
-import face_recognition_service
+from service.facerecognition.FaceRecognitionTensorFlow import FaceRecognitionTensorFlow
+from service.facerecognition.FaceRecognitionDlib import FaceRecognitionDlib
 from flask import Flask, request
 from flask_cors import CORS
 
 app = Flask(__name__)
 CORS(app)
+
+if config.face_recognition_type is 'DLIB':
+    face_recognition_service = FaceRecognitionDlib()
+else:
+    face_recognition_service = FaceRecognitionTensorFlow()
 
 
 @app.route('/', methods=['GET'])
@@ -36,13 +42,14 @@ def submit_photos():
         os.mkdir(os.path.join(config.data_dir, str(name)))
 
         person_directory = os.path.join(config.data_dir, name)
+        person_photos = []
         for i, image in enumerate(images):
             image_numpy = np.fromstring(base64.b64decode(image.split(",")[1]), np.uint8)
             image = cv2.imdecode(image_numpy, cv2.IMREAD_COLOR)
             cv2.imwrite(os.path.join(person_directory, str(i) + '.png'), image)
+            person_photos.append(image)
 
-        face_recognition_service.generate_dataset_festures()
-
+        face_recognition_service.add_person_face(name, person_photos)
         return "results"
 
 
@@ -53,9 +60,13 @@ def predict_frame():
         image_numpy = np.fromstring(base64.b64decode(image.split(",")[1]), np.uint8)
         image = cv2.imdecode(image_numpy, cv2.IMREAD_COLOR)
 
-        image = face_recognition_service.predict_people(image)
+        image_response = face_recognition_service.detect_faces_from_img(image)
 
-        retval, buffer = cv2.imencode('.png', image)
+        if image_response is None:
+            retval, buffer = cv2.imencode('.png', image)
+            return base64.b64encode(buffer)
+
+        retval, buffer = cv2.imencode('.png', image_response)
         img_as_text = base64.b64encode(buffer)
 
         return img_as_text
