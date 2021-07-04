@@ -1,6 +1,6 @@
 import cv2
 import face_recognition
-from service.facerecognition.FaceRecognitionService import FaceRecognitionService
+from facerecognition.FaceRecognitionService import FaceRecognitionService
 
 
 class FaceRecognitionDlib(FaceRecognitionService):

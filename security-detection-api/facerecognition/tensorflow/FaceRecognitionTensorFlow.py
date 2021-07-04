@@ -6,8 +6,8 @@ import config
 import numpy as np
 import tensorflow as tf
 from imutils import face_utils
-from service.facerecognition.siameseNetwork import get_siamese_model, preprocess_input
-from service.facerecognition.FaceRecognitionService import FaceRecognitionService
+from facerecognition.tensorflow.siameseNetwork import get_siamese_model, preprocess_input
+from facerecognition.FaceRecognitionService import FaceRecognitionService
 
 
 class _Persons:

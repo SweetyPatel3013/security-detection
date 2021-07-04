@@ -106,7 +106,7 @@ def get_siamese_model():
     model = SiameseNetwork(vggface)
 
     base_dir = "."
-    checkpoint_path = os.path.join(base_dir, 'logs/model/siamese-1')
+    checkpoint_path = os.path.join(base_dir, 'resources/logs/model/siamese-1')
 
     _ = model([tf.zeros((1, 224, 224, 3)), tf.zeros((1, 224, 224, 3)), tf.zeros((1, 224, 224, 3))])
     _ = model.get_features(tf.zeros((1, 224, 224, 3)))

@@ -2,3 +2,5 @@
 venv
 /face-recognition/venv
 logs/
+security-detection-api/resources/logs/
+__pycache__/

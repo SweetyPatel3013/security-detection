@@ -4,15 +4,15 @@ import cv2
 import numpy as np
 import json
 import base64
-from service.facerecognition.FaceRecognitionTensorFlow import FaceRecognitionTensorFlow
-from service.facerecognition.FaceRecognitionDlib import FaceRecognitionDlib
+from facerecognition.tensorflow.FaceRecognitionTensorFlow import FaceRecognitionTensorFlow
+from facerecognition.dlib.FaceRecognitionDlib import FaceRecognitionDlib
 from flask import Flask, request
 from flask_cors import CORS
 
 app = Flask(__name__)
 CORS(app)
 
-if config.face_recognition_type is 'DLIB':
+if config.face_recognition_type == 'DLIB':
     face_recognition_service = FaceRecognitionDlib()
 else:
     face_recognition_service = FaceRecognitionTensorFlow()
