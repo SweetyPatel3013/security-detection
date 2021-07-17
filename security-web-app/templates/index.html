@@ -21,6 +21,7 @@
 
     <div id="security-menu">
         <button id="face-recognition-button">Start camera</button>
+        <button id="movement-detection-button">Movement detection</button>
     </div>
 
     <div id="enter-name">
@@ -77,13 +78,21 @@
     <script>
 
         $(document).ready(function(){
+            //var api_endpoint = "http://localhost:8888";
+            var api_endpoint = "https://security-detection-api.herokuapp.com";
 
             function redirect_results(){
                 $("#spinner-div").css("display", "none");
-                window.location.href = window.location.href + "results";
+                window.location.href = window.location.href + "faces/recognition";
+            }
+
+            function redirect_movements_page(){
+                $("#spinner-div").css("display", "none");
+                window.location.href = window.location.href + "movements";
             }
 
             $("#face-recognition-button").click(redirect_results)
+            $("#movement-detection-button").click(redirect_movements_page)
 
             $("#submit-name-of-person").click(function(){
                 let name = $("#name-of-person").val();
@@ -92,7 +101,7 @@
                 }
                 else{
                     $.ajax({
-                        url: 'http://localhost:8888/persons',
+                        url: api_endpoint + '/persons',
                         type: 'get',
                         data: {name : name},
                         success:function(data){
@@ -174,7 +183,7 @@
                     });
                     images_to_be_sent = JSON.stringify(images_to_be_sent);
                     $.ajax({
-                        url:'http://localhost:8888/persons/photos',
+                        url: api_endpoint + '/persons/photos',
                         type: 'post',
                         data: {
                             name: person_name,
@@ -182,7 +191,7 @@
                         },
                         success:function(data){
                             $("#spinner-div").css("display", "none");
-                            window.location.href = window.location.href + data;
+                            window.location.href = window.location.href + 'faces/recognition';
                         },
                         error:function(err){
                             alert(err.Message);

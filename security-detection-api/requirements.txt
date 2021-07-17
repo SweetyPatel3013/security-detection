@@ -1,0 +1,8 @@
+opencv-python
+flask==1.1.2
+gunicorn==20.0.4
+flask_cors
+imutils
+cmake
+tensorflow
+face_recognition

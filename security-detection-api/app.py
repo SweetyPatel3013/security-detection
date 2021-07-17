@@ -8,6 +8,7 @@ from facerecognition.tensorflow.FaceRecognitionTensorFlow import FaceRecognition
 from facerecognition.dlib.FaceRecognitionDlib import FaceRecognitionDlib
 from flask import Flask, request
 from flask_cors import CORS
+from movementdetection.MovementDetector import MovementDetector
 
 app = Flask(__name__)
 CORS(app)
@@ -71,6 +72,30 @@ def predict_frame():
 
         return img_as_text
 
+
+@app.route("/movements", methods=['POST'])
+def detect_movement():
+    if request.method == 'POST':
+        image_a = request.form['image_a']
+        image_b = request.form['image_b']
+
+        image_a = __decode_img(image_a)
+        image_b = __decode_img(image_b)
+
+        image_response = MovementDetector.detect(image_a, image_b)
+        if image_response is None:
+            retval, buffer = cv2.imencode('.png', image_a)
+            return base64.b64encode(buffer)
+
+        retval, buffer = cv2.imencode('.png', image_response)
+        img_as_text = base64.b64encode(buffer)
+
+        return img_as_text
+
+
+def __decode_img(img):
+    image_numpy = np.fromstring(base64.b64decode(img.split(",")[1]), np.uint8)
+    return cv2.imdecode(image_numpy, cv2.IMREAD_COLOR)
 
 if __name__ == "__main__":
     app.run(debug=False, port=config.web_app_port)

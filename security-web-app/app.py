@@ -8,9 +8,13 @@ def index():
     return render_template('index.html')
 
 
-@app.route('/results')
-def results():
-    return render_template('results.html')
+@app.route('/faces/recognition')
+def face_recognition():
+    return render_template('FaceRecognition.html')
+
+@app.route('/movements')
+def movements():
+    return render_template('MovementDetector.html')
 
 if __name__ == "__main__":
     app.run(debug=False)
