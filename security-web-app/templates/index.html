@@ -8,34 +8,29 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
-    <title>Security detection system</title>
-    <style>
-        body{
-        background: url('static/images/bg_img2.jpg') center no-repeat;
-        background-size: 100% 100%;
-        height: 100vh;
-        }
-    </style>
+    <title>Security Detection System</title>
 </head>
 <body>
 <div id="header">
-    <h1>Security detection system</h1>
-    <p>Lambton College - Group 4</p>
+    <h1>Security Detection System</h1>
+    <p>Lambton College - Group 4 - Visionaries</p>
 </div>
 
 <br><br>
-<div class="title-feature">
-    <h3>Security features</h3>
-</div>
+<div>
+    <div class="title-feature">
+        <h3>Security Features</h3>
+    </div>
 
-<div id="security-menu">
-    <button id="add-person-button" class="feature-option-button">Add person</button>
-    <br><br>
-    <button id="face-recognition-button" class="feature-option-button">Face Recognition</button>
-    <br><br>
-    <button id="movement-detection-button" class="feature-option-button">Movement detection</button>
-    <br><br>
-    <button id="face-mask-detection-button" class="feature-option-button">Face mask detection</button>
+    <div id="security-menu">
+        <button id="add-person-button" class="feature-option-button">Add Person</button>
+        <br><br>
+        <button id="face-recognition-button" class="feature-option-button">Face Recognition</button>
+        <br><br>
+        <button id="movement-detection-button" class="feature-option-button">Movement Detection</button>
+        <br><br>
+        <button id="face-mask-detection-button" class="feature-option-button">Face Mask Detection</button>
+    </div>
 </div>
 
 <canvas id="webcam-canvas"></canvas>
