@@ -6,13 +6,16 @@ import json
 import base64
 from facerecognition.tensorflow.FaceRecognitionTensorFlow import FaceRecognitionTensorFlow
 from facerecognition.dlib.FaceRecognitionDlib import FaceRecognitionDlib
-from flask import Flask, request
+from flask import Flask, request, render_template, jsonify, Response
 from flask_cors import CORS, cross_origin
 from movementdetection.MovementDetector import MovementDetector
+import logging
 
 app = Flask(__name__)
 CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
+log = logging.getLogger('werkzeug')
+log.setLevel(logging.ERROR)
 
 if config.face_recognition_type == 'DLIB':
     face_recognition_service = FaceRecognitionDlib()
@@ -20,7 +23,7 @@ else:
     face_recognition_service = FaceRecognitionTensorFlow()
 
 
-@app.route('/', methods=['GET'])
+@app.route('/health', methods=['GET'])
 @cross_origin()
 def info():
     if request.method == 'GET':
@@ -102,6 +105,35 @@ def detect_movement():
 def __decode_img(img):
     image_numpy = np.fromstring(base64.b64decode(img.split(",")[1]), np.uint8)
     return cv2.imdecode(image_numpy, cv2.IMREAD_COLOR)
+
+
+#################
+## FRONT END
+##################
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+
+@app.route('/faces')
+def persons():
+    return render_template('AddPerson.html')
+
+
+@app.route('/faces/recognition')
+def face_recognition():
+    return render_template('FaceRecognition.html')
+
+
+@app.route('/movements')
+def movements():
+    return render_template('MovementDetector.html')
+
+
+@app.route('/test')
+def test_face():
+    return render_template('FaceRecognition_socket.html')
+
 
 if __name__ == "__main__":
     app.run(debug=False, port=config.web_app_port)

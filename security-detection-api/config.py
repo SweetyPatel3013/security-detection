@@ -1,5 +1,5 @@
 # API configuration
-web_app_port = 8888
+web_app_port = 8080
 
 # Path where the API will save files
 data_dir = './resources/data'

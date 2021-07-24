@@ -10,10 +10,6 @@
     <!-- Google distributed JQUERY -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-    <!-- SOCKET IO JS for socket Connection -->
-    <!-- Uncomment the below script only if you plan to use socket connection -->
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js" integrity="sha512-v8ng/uGxkge3d1IJuEo6dJP8JViyvms0cly9pnbfRxT6/31c3dRWxIiwGnMSWwZjHKOuY3EVmijs7k1jz/9bLA==" crossorigin="anonymous"></script> -->
-
     <!-- Custom CSS for Layout -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 
@@ -28,7 +24,7 @@
 </div>
 
 <div class="title-feature">
-    <h2>Movement detection</h2>
+    <h2>Face Recognition</h2>
 </div>
 
 <video id="prediction-video-stream"></video>
@@ -43,12 +39,12 @@
 
     $(document).ready(function () {
 
+        //var api_endpoint = "http://localhost:8888";
+        var api_endpoint = "https://security-detection-api.herokuapp.com";
+
         var video_container = null;
         var canvas_container = null;
         var video_prediction = null;
-
-        //var api_endpoint = "http://localhost:8888";
-        var api_endpoint = "https://security-detection-api.herokuapp.com";
 
         var width = 640;
         var height = 480;
@@ -81,16 +77,15 @@
         }
 
         function predict_each_frame() {
-            let image_a = get_image_data_url();
-            //setTimeout(() => {}, 1000);
-            let image_b = get_image_data_url();
-            if (image_a !== '') {
+            let data = get_image_data_url();
+            setTimeout(() => {}, 3000);
+            if (data !== '') {
                 $.ajax({
-                    url: api_endpoint + '/movements',
+                    //url: api_endpoint + '/persons/predictions',
+                    url: '/persons/predictions',
                     type: 'post',
                     data: {
-                        image_a: image_a,
-                        image_b: image_b
+                        image: data,
                     },
                     success: function (data) {
                         predict_each_frame();

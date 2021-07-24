@@ -82,11 +82,12 @@
 
         function predict_each_frame() {
             let image_a = get_image_data_url();
-            //setTimeout(() => {}, 1000);
+            setTimeout(() => {}, 3000);
             let image_b = get_image_data_url();
             if (image_a !== '') {
                 $.ajax({
-                    url: api_endpoint + '/movements',
+                    //url: api_endpoint + '/movements',
+                    url: '/movements',
                     type: 'post',
                     data: {
                         image_a: image_a,
