@@ -7,11 +7,12 @@ import base64
 from facerecognition.tensorflow.FaceRecognitionTensorFlow import FaceRecognitionTensorFlow
 from facerecognition.dlib.FaceRecognitionDlib import FaceRecognitionDlib
 from flask import Flask, request
-from flask_cors import CORS
+from flask_cors import CORS, cross_origin
 from movementdetection.MovementDetector import MovementDetector
 
 app = Flask(__name__)
 CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 
 if config.face_recognition_type == 'DLIB':
     face_recognition_service = FaceRecognitionDlib()
@@ -20,12 +21,14 @@ else:
 
 
 @app.route('/', methods=['GET'])
+@cross_origin()
 def info():
     if request.method == 'GET':
         return "Security-detection-api is running"
 
 
 @app.route('/persons', methods=['GET'])
+@cross_origin()
 def submit_name():
     if request.method == 'GET':
         name = request.args['name'].lower()
@@ -35,6 +38,7 @@ def submit_name():
 
 
 @app.route('/persons/photos', methods=['POST'])
+@cross_origin()
 def submit_photos():
     if request.method == 'POST':
         name = request.form['name'].lower()
@@ -55,6 +59,7 @@ def submit_photos():
 
 
 @app.route("/persons/predictions", methods=['POST'])
+@cross_origin()
 def predict_frame():
     if request.method == 'POST':
         image = request.form['image']
@@ -74,6 +79,7 @@ def predict_frame():
 
 
 @app.route("/movements", methods=['POST'])
+@cross_origin()
 def detect_movement():
     if request.method == 'POST':
         image_a = request.form['image_a']
