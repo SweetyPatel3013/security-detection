@@ -2,6 +2,12 @@
     box-sizing: border-box;
 }
 
+.title-feature{
+    text-align: center;
+    margin: 0px;
+    padding: 10px;
+}
+
 #header {
     text-align: center;
     margin: 0px;
@@ -57,7 +63,8 @@
     width: 50%;
 }
 
-#face-recognition-button {
+.feature-option-button{
+    width: 60%;
     padding: 5px 10px;
     border-radius: 8px;
     background-color: rgb(159, 215, 252);
@@ -65,17 +72,18 @@
     transition: 0.2s;
 }
 
-#face-recognition-button:hover {
+.feature-option-button:hover {
     background-color: rgb(200, 233, 255);
     box-shadow: 3px 3px 3px gray;
 }
 
-#face-recognition-button:disabled {
+.feature-option-button:disabled {
     background-color: rgba(73, 99, 116, 0.1);
     border: 2px solid rgba(26, 35, 41, 0.1);
 }
 
 #submit-name-of-person {
+    width: 100%;
     padding: 5px 10px;
     border-radius: 8px;
     background-color: rgb(159, 215, 252);
