@@ -6,7 +6,7 @@
     text-align: center;
     margin: 0px;
     padding: 10px;
-    background-color: rgb(88, 88, 88);
+    background-color: rgba(0,0,0,0.5)/*rgb(88, 88, 88);*/
     color: white;
 }
 
