@@ -1,7 +1,7 @@
 # Capstone project
 **Lambton College**
 - Articial intelligence and machine learning
-## Security Detection system
+## Security Detection System
 
 ### Group 4
 - Arshdeep Singh
