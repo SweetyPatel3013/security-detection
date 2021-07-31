@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
+    <title>Security Detection System</title>
+</head>
+<body>
+<div id="header">
+    <h1>Security Detection System</h1>
+    <p>Lambton College - Group 4 - Visionaries</p>
+</div>
+
+<br><br>
+<div>
+    <div class="title-feature">
+        <h3>Security Features</h3>
+    </div>
+
+    <div id="security-menu">
+        <button id="add-person-button" class="feature-option-button">Add Person</button>
+        <br><br>
+        <button id="face-recognition-button" class="feature-option-button">Face Recognition</button>
+        <br><br>
+        <button id="movement-detection-button" class="feature-option-button">Movement Detection</button>
+        <br><br>
+        <button id="face-mask-detection-button" class="feature-option-button">Face Mask Detection</button>
+    </div>
+</div>
+
+<canvas id="webcam-canvas"></canvas>
+
+<div id="spinner-div">
+    <div id="spinner">
+    </div>
+    <div id="spinner-text">
+        Generating Features
+    </div>
+</div>
+
+<script>
+
+    $(document).ready(function () {
+        //var api_endpoint = "http://localhost:8888";
+        var api_endpoint = "https://security-detection-api.herokuapp.com";
+
+        function redirect_results() {
+            $("#spinner-div").css("display", "none");
+            window.location.href = window.location.href + "faces/recognition";
+        }
+
+        function redirect_movements_page() {
+            $("#spinner-div").css("display", "none");
+            window.location.href = window.location.href + "movements";
+        }
+
+        function redirect_add_peron_page() {
+            $("#spinner-div").css("display", "none");
+            window.location.href = window.location.href + "faces";
+        }
+
+        function redirect_mask_detection(){
+            $("#spinner-div").css("display", "none");
+            window.location.href = window.location.href + "/faces/masks";
+        }
+
+        $("#face-recognition-button").click(redirect_results)
+        $("#movement-detection-button").click(redirect_movements_page)
+        $("#add-person-button").click(redirect_add_peron_page)
+        $("#face-mask-detection-button").click(redirect_mask_detection)
+
+    });
+
+</script>
+
+</body>
+</html>

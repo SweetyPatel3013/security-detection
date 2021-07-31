@@ -1,0 +1,429 @@
+* {
+    box-sizing: border-box;
+}
+
+.title-feature{
+    text-align: left;
+    margin: 20px;
+    padding-left: 50px;
+}
+
+body {
+    background: url('../images/bg_img2.jpeg') center no-repeat;
+    background-size: 100% 100%;
+    height: 100vh;
+    color: white;
+    font-family: Helvetica;
+}
+
+#header {
+    text-align: left;
+    margin: 0px;
+    padding-left: 70px;
+    padding-top: 80px;
+}
+
+#header p {
+    display: inline-block;
+    width: 50%;
+    margin: 10px auto;
+}
+
+#sticky-note {
+    margin: 10px auto;
+    text-align: center;
+    width: 50%;
+}
+
+#sticky-note p{
+    margin: 10px;
+}
+
+#enter-name {
+    /*margin: 20px auto;
+    text-align: center;*/
+    width: 60%;
+    float: left;
+    margin-left: 70px;
+}
+
+#enter-name #input-name-div {
+    display: inline-block;
+    width: 40%;
+}
+
+#enter-name #button-name-div {
+    display: inline-block;
+    width: 20%;
+}
+
+#name-of-person {
+    padding: 5px 10px;
+    border-radius: 8px;
+}
+
+#name-of-person:read-only {
+    background-color: rgb(180, 180, 248);
+}
+
+#security-menu {
+    text-align: center;
+    width: 450px;
+}
+
+.feature-option-button{
+    width: 60%;
+    padding: 5px 10px;
+    border-radius: 8px;
+    background-color: rgb(159, 215, 252);
+    border: 2px solid rgb(39, 169, 255);
+    transition: 0.2s;
+}
+
+.feature-option-button:hover {
+    background-color: rgb(200, 233, 255);
+    box-shadow: 3px 3px 3px gray;
+}
+
+.feature-option-button:disabled {
+    background-color: rgba(73, 99, 116, 0.1);
+    border: 2px solid rgba(26, 35, 41, 0.1);
+}
+
+#submit-name-of-person {
+    width: 100%;
+    padding: 5px 10px;
+    border-radius: 8px;
+    background-color: rgb(159, 215, 252);
+    border: 2px solid rgb(39, 169, 255);
+    transition: 0.2s;
+}
+
+#submit-name-of-person:hover {
+    background-color: rgb(200, 233, 255);
+    box-shadow: 3px 3px 3px gray;
+}
+
+#submit-name-of-person:disabled {
+    background-color: rgba(73, 99, 116, 0.1);
+    border: 2px solid rgba(26, 35, 41, 0.1);
+}
+
+#change-name-of-person {
+    display: none;
+}
+
+#instructions {
+    display: none;
+    padding-left: 35px;
+    /*justify-content: space-around;
+    flex-direction: row;
+    flex-flow: row;
+    flex-wrap: wrap;
+    align-content: center;*/
+}
+
+#capture-instructions {
+    margin-left: 35px;
+    /*text-align: justify;*/
+    width: 500px;
+}
+
+#image-count-instruction {
+    margin: 15px;
+    text-align: center;
+    width: 30%;
+    align-self: center;
+}
+
+#submit-all-images-button {
+    padding: 5px 10px;
+    border-radius: 8px;
+    background-color: rgb(159, 215, 252);
+    border: 2px solid rgb(39, 169, 255);
+    transition: 0.2s;
+}
+
+#submit-all-images-button:hover {
+    background-color: rgb(200, 233, 255);
+    box-shadow: 3px 3px 3px gray;
+}
+
+#video-photo {
+    display: none;
+    /* background-color: blue;
+    flex-direction: row;
+    flex-flow: row;
+    flex-wrap: wrap;
+    justify-content: space-around;*/
+}
+
+#video-div {
+   /* height: 480px;
+    width: 640px;
+    position: relative;
+    /* background-color: white; */
+    margin-top: 15px;
+}
+
+#video-div #take-photo-button {
+    position: absolute;
+    bottom: 2%;
+    left: 60%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    background-color: rgb(159, 215, 252);
+    border: 2px solid rgb(39, 169, 255);
+    border-radius: 8px;
+    padding: 2px 5px;
+}
+
+#webcam-video {
+    height: 250px;
+    width: 500px;
+    border-radius: 5px;
+}
+
+#video-div #take-photo-button:hover {
+    background-color: rgb(200, 233, 255);
+}
+
+#webcam-canvas {
+    display: none;
+    height: 480px;
+    width: 640px;
+}
+
+#photo-div {
+    /*height: 480px;
+    min-width: 640px;
+    /* background-color: white; */
+    position: relative;
+    /*margin: 15px;*/
+}
+
+.captured-image {
+    /*position: absolute;*/
+    height: 100px;
+    width: 150px;
+    border: 2px solid black;
+    border-radius: 5px;
+    transition: 0.5s;
+}
+
+.captured-image:hover {
+    z-index: 1000 !important;
+    transform: translate(-10%, 0);
+}
+
+#image-modal-div {
+    display: none;
+    position: fixed;
+    background-color: rgb(0, 0, 0, 0.9);
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 5000;
+}
+
+#close-image-modal {
+    position: absolute;
+    top: 15px;
+    right: 40px;
+    font-size: 40px;
+    color: white;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+#close-image-modal:hover {
+    color: rgb(182, 182, 182);
+}
+
+#delete-modal-image-button {
+    display: block;
+    margin: auto;
+    margin-top: 15px;
+    padding: 5px 10px;
+    border-radius: 8px;
+    background-color: rgb(159, 215, 252);
+    border: 2px solid rgb(39, 169, 255);
+    transition: 0.2s;
+}
+
+#delete-modal-image-button:hover {
+    background-color: rgb(200, 233, 255);
+}
+
+#image-modal-img {
+    margin: auto;
+    display: block;
+    height: 400px;
+    width: 500px;
+    border-radius: 5px;
+    margin-top: 100px;
+}
+
+#spinner-div {
+    display: none;
+    position: fixed;
+    background-color: rgb(0, 0, 0, 0.9);
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 5000;
+}
+
+#spinner {
+    border: 10px solid rgb(78, 78, 78);
+    margin: auto;
+    margin-top: 300px;
+    border-top-color: white;
+    border-radius: 50%;
+    height: 100px;
+    width: 100px;
+    animation: spin 2s linear infinite;
+}
+
+#spinner-text {
+    margin: 20px auto;
+    text-align: center;
+    color: white;
+    font-size: 200%;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+#prediction-video-stream {
+    display: none;
+    height: 480px;
+    width: 640px;
+}
+
+#video-prediction{
+    /* background-color: green; */
+    margin: 30px auto;
+    margin-left: 70px
+    /*width: 640px;
+    height: 480px;*/
+}
+
+#prediction-result-image {
+    height: 320px;
+    width: 600px;
+    border-radius: 5px;
+}
+
+@media only screen and (max-width: 900px){
+    #enter-name #button-name-div, #enter-name #input-name-div{
+        display: block;
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    #capture-instructions, #image-count-instruction {
+        width: 100%;
+    }
+
+}
+
+.mySlides {display: none}
+img {vertical-align: middle;}
+
+/* Slideshow container */
+.slideshow-container {
+  max-width: 1000px;
+  position: relative;
+  margin: auto;
+}
+
+/* Next & previous buttons */
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  padding: 16px;
+  margin-top: -22px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+  background-color: rgba(0,0,0,0.8);
+}
+
+/* Caption text */
+.text {
+  color: #f2f2f2;
+  font-size: 15px;
+  padding: 8px 12px;
+  position: absolute;
+  bottom: 8px;
+  width: 100%;
+  text-align: center;
+}
+
+/* Number text (1/3 etc) */
+.numbertext {
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+}
+
+/* The dots/bullets/indicators */
+.dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover {
+  background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1.5s;
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@-webkit-keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1}
+}
+
+@keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1}
+}
+
+/* On smaller screens, decrease text size */
+@media only screen and (max-width: 300px) {
+  .prev, .next,.text {font-size: 11px}
+}

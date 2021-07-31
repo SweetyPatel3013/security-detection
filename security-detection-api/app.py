@@ -9,8 +9,12 @@ from facerecognition.dlib.FaceRecognitionDlib import FaceRecognitionDlib
 from flask import Flask, request, render_template, jsonify, Response
 from flask_cors import CORS, cross_origin
 from movementdetection.MovementDetector import MovementDetector
+from maskdetection.FaceMaskDetector import FaceMaskDetector
 import logging
 
+#################
+## Application config
+##################
 app = Flask(__name__)
 CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
@@ -22,7 +26,12 @@ if config.face_recognition_type == 'DLIB':
 else:
     face_recognition_service = FaceRecognitionTensorFlow()
 
+face_mask_detector = FaceMaskDetector(config.mask_prototxt_path, config.mask_weights_path, config.mask_model_path)
 
+
+#################
+## API definition
+##################
 @app.route('/health', methods=['GET'])
 @cross_origin()
 def info():
@@ -81,6 +90,25 @@ def predict_frame():
         return img_as_text
 
 
+@app.route("/persons/masks", methods=['POST'])
+@cross_origin()
+def detect_mask():
+    if request.method == 'POST':
+        image = request.form['image']
+        image_numpy = np.fromstring(base64.b64decode(image.split(",")[1]), np.uint8)
+        image = cv2.imdecode(image_numpy, cv2.IMREAD_COLOR)
+
+        image_response = face_mask_detector.detect_and_predict_mask(image)
+        if image_response is None:
+            retval, buffer = cv2.imencode('.png', image)
+            return base64.b64encode(buffer)
+
+        retval, buffer = cv2.imencode('.png', image_response)
+        img_as_text = base64.b64encode(buffer)
+
+        return img_as_text
+
+
 @app.route("/movements", methods=['POST'])
 @cross_origin()
 def detect_movement():
@@ -112,27 +140,32 @@ def __decode_img(img):
 ##################
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('index_new.html')
 
 
 @app.route('/faces')
 def persons():
+    return render_template('add-person_new.html')
+
+
+@app.route('/faces1')
+def persons1():
     return render_template('AddPerson.html')
 
 
 @app.route('/faces/recognition')
 def face_recognition():
-    return render_template('FaceRecognition.html')
+    return render_template('face-recognition_new.html')
 
 
 @app.route('/movements')
 def movements():
-    return render_template('MovementDetector.html')
+    return render_template('movement-detector_new.html')
 
 
-@app.route('/test')
-def test_face():
-    return render_template('FaceRecognition_socket.html')
+@app.route('/faces/masks')
+def mask_detection():
+    return render_template('face_mask_new.html')
 
 
 if __name__ == "__main__":

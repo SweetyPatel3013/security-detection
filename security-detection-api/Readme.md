@@ -11,5 +11,6 @@ heroku open --app security-detection-api
 gcloud app deploy app.yml
 gcloud app logs tail -s default
 gcloud app browse -s default
-# Stop service
- gcloud app versions stop --service default {version_id}
+
+### Stop service
+gcloud app versions stop --service default {version_id}
