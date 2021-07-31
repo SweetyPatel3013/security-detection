@@ -30,7 +30,10 @@ URL: https://security-detection-api.herokuapp.com/
 ## Azure
 Azure: https://security-detection-api.azurewebsites.net
 
-## Run app using docker image built and saved in Docker hub
+## Docker hub
+**Docker image Url:** 
+- https://hub.docker.com/repository/docker/mcadac/security-detection-api
+ 
 **Run**
 - docker run -it --cpus="2" -p 5000:8080 mcadac/security-detection-api:1.0.1
 
