@@ -1,6 +1,8 @@
 # Capstone project
+
 **Lambton College**
 - Articial intelligence and machine learning
+
 ## Security Detection System
 
 ### Group 4
@@ -9,25 +11,49 @@
 - Sweety Utsav
 - David Camilo Espitia
 
-## Architecture
-...
-## How to run it API
-1. Clone the repository
-2. Go to directory /security-detection-api
-3. run the next command
-``
-python api_controller.py
-``
-## How to run it Web APP
-1. Clone the repository
-2. Go to directory /security-web-app
-3. run the next command
-``
-python app.py
-``
-## Code repository
-- https://github.com/SweetyPatel3013/security-detection
+## Cloud deployment
 
-## References
-- https://towardsdatascience.com/building-face-recognition-model-under-30-minutes-2d1b0ef72fda
-- https://github.com/dedhiaparth98/face-recognition
+### Local Env
+0. Clone repository
+1. Go to the repo directory
+2. Go to the folder security-detection-api  "cd security-detection-api"
+3. Run next commands if you haven't install the package yet
+    pip install -r requirements.txt
+    pip install dlib
+4. Run the next command to deploy the app
+    python app.py
+5. Open the url http://127.0.0.1:8080
+
+### Heroku
+1. heroku container:login
+2. heroku create --app security-detection-api 
+3. heroku container:push web --app security-detection-api
+4. heroku container:release web --app security-detection-api
+5. heroku open --app security-detection-api
+
+URL: https://security-detection-api.herokuapp.com/
+
+### Google
+1. gcloud app deploy app.yml
+2. gcloud app logs tail -s default
+3. gcloud app browse -s default
+
+#### Stop service (Google)
+1. gcloud app versions stop --service default {version_id}
+
+### Azure
+Azure: https://security-detection-api.azurewebsites.net
+
+### Docker hub
+**Docker image Url:** 
+- https://hub.docker.com/repository/docker/mcadac/security-detection-api
+ 
+**Run**
+- docker run -it --cpus="2" -p 5000:8080 mcadac/security-detection-api:1.0.1
+
+#### Commands to build and push image in the docker hub
+**Build docker image**
+- docker build -t mcadac/security-detection-api:1.0.1 .
+
+**Push docker image**
+- docker push mcadac/security-detection-api:1.0.1
