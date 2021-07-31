@@ -1,0 +1,68 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Security Detection System</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Great+Vibes&display=swap" rel="stylesheet">
+
+    <!-- Typekit Font -->
+    <link rel="stylesheet" href="https://use.typekit.net/esf5tbh.css">
+
+    <!-- jquery -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style_new.css') }}">
+
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
+
+</head>
+
+<body class="bg-gray-50">
+<img src="{{ url_for('static', filename='images/cyber-security.png') }}" class="absolute bottom-0 opacity-40 right-0" alt="">
+<div class="relative">
+    <!-- Header Start Here -->
+    <header class="bg-white border-b">
+        <div class="container mx-auto px-8">
+            <div class="flex items-center justify-between py-2">
+                <div class="flex gap-5 items-center">
+                    <img src="{{ url_for('static', filename='images/facial-recognition-icon.png') }}" width="60" alt="">
+                    <div>
+                        <div class="font-bold text-2xl">Security Detection System</div>
+                        <div class="text-sm">Lambton College - Group 4 - Visionaries</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Header End Here -->
+
+
+    <div class="py-16">
+        <div class="container mx-auto">
+            <div class="bg-white max-w-2xl mx-auto rounded-sm shadow-sm">
+                <h1 class="border-b font-bold px-6 py-4 text-lg flex gap-4">Face Recognition</h1>
+                <div class="px-8 pt-5 pb-8 relative">
+                    <div class="bg-gray-50 border border-gray-50/100 rounded-[3px]">
+                        <div class="h-80 bg-white m-2">
+                            <video id="prediction-video-stream" style="display: none"></video>
+                            <div id="video-prediction" class="aspect-w-16 aspect-h-9">
+                                <img id="prediction-result-image"></img>
+                            </div>
+                            <canvas id="webcam-canvas" style="display: none"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script language="JavaScript" type="text/javascript" src="{{ url_for('static', filename='js/face-recognition-logic.js') }}"></script>
+</body>
+</html>
