@@ -31,7 +31,7 @@ def movements():
     # return render_template('MovementDetector.html')
 
 @app.route('/facemask')
-def movements():
+def facemask():
     return render_template('face-mask_new.html')
 
 if __name__ == "__main__":
