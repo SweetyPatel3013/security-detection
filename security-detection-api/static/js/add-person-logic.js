@@ -112,6 +112,7 @@ $(document).ready(function () {
     $("#take-photo-button").click(take_photo);
 
     $("#submit-all-images-button").click(function () {
+
         console.log("Photos : " + captured_image_counter)
         if (captured_image_counter === 0 || captured_images === undefined || captured_images.length == 0) {
             alert("You need to click some photos");
