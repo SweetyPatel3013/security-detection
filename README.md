@@ -18,8 +18,8 @@
 1. Go to the repo directory
 2. Go to the folder security-detection-api  "cd security-detection-api"
 3. Run next commands if you haven't install the package yet
-    pip install -r requirements.txt
-    pip install dlib
+    - pip install -r requirements.txt
+    - pip install dlib
 4. Run the next command to deploy the app
     python app.py
 5. Open the url http://127.0.0.1:8080
@@ -31,7 +31,7 @@
 4. heroku container:release web --app security-detection-api
 5. heroku open --app security-detection-api
 
-URL: https://security-detection-api.herokuapp.com/
+- URL: https://security-detection-api.herokuapp.com/
 
 ### Google
 1. gcloud app deploy app.yml
