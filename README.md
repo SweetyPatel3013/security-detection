@@ -8,7 +8,7 @@
 ### Group 4
 - Arshdeep Singh
 - Dhaval Barot
-- Sweety Utsav
+- Sweety Patel
 - David Camilo Espitia
 
 ## Cloud deployment
